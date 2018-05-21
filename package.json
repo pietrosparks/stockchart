@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "preinstall": "npm install nodemon -g",
-    "start": "nodemon ./api/bin/www",
+    "start": "nodemon ./api/app.js",
     "build": "node build/build.js",
     "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm run build"
   },
