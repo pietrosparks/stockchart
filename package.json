@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev",
+    "preinstall": "npm install nodemon -g",
+    "start": "nodemon ./api/bin/www",
     "build": "node build/build.js",
     "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm run build"
   },
@@ -16,7 +17,9 @@
     "cors": "^2.8.4",
     "dotenv": "^5.0.1",
     "epic-spinners": "^1.0.3",
+    "express": "^4.16.3",
     "highcharts": "^6.1.0",
+    "serve-static": "^1.13.2",
     "vue": "^2.5.2",
     "vue-highcharts": "0.0.10",
     "vue-moment": "^4.0.0-0",
