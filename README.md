@@ -1,6 +1,6 @@
 # Stock Chart 
 
-> A Vue.js project
+> A Vue.js project showing Stock market prices and comparisons on a chart
 
 ## Build Setup
 
