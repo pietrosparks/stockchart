@@ -107,9 +107,12 @@
             valueDecimals: 2
           },
         })
-
+        
         if(this.chartOptions.series.length == this.addedStocks.length){
           return this.loaded = true;
+        }
+        else if(!this.chartOptions.series.length){
+          return this.loaded = true
         }
       },
       randomColor() {
