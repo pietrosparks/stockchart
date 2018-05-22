@@ -108,27 +108,18 @@
           },
         })
         
-        if(this.chartOptions.series.length == this.addedStocks.length || this.chartOptions.series.length-1 == this.addedStocks.length){
+        if(this.chartOptions.series.length == this.addedStocks.length){
           return this.loaded = true;
         }
-       
+        else if(!this.chartOptions.series.length){
+          return this.loaded = true
+        }
       },
       randomColor() {
         const r = () => Math.floor(256 * Math.random());
         return `rgb(${r()}, ${r()}, ${r()})`;
       },
       initChart(args) {
-        if(args==undefined){
-          this.$axios.get(
-            `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&outputsize=full&symbol=${this.initChartOption}&apikey=${this.chartApiKey}`
-          )
-          .then(resp => {
-            this.transformAndAdd(resp);
-          }).catch(err => {
-            console.log(err);
-          })
-        }
-        else{
           this.$axios.get(
             `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&outputsize=full&symbol=${args}&apikey=${this.chartApiKey}`
           )
@@ -137,8 +128,6 @@
           }).catch(err => {
             console.log(err);
           })
-        }
-         
       },
 
       searchAndAdd() {
@@ -169,7 +158,8 @@
           this.addedStocks = addedStocks
         }
         else{
-          let stockArray = []
+          let stockArray = [];
+          stockArray.push('GOOG');
           localStorage.setItem('addedStock',JSON.stringify(stockArray));
           this.addedStocks = stockArray
         }
@@ -190,7 +180,6 @@
 
       },
       initAddedStocksChart(){
-        this.initChart()
         this.addedStocks.forEach(stock=>this.initChart(stock));
       }
     },
@@ -198,6 +187,8 @@
     beforeMount() {
       this.loadStoredStock();
       this.initAddedStocksChart();
+      
+      
       
     },
 
